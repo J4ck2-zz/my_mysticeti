@@ -1,0 +1,21 @@
+
+-----------------------------------------
+ SUMMARY:
+-----------------------------------------
+ + CONFIG:
+ Protocol: mysBasedBft 
+ DDOS attack: False 
+ Committee size: 4 nodes
+ Input rate: 10,500 tx/s
+ Transaction size: 256 B
+ Batch size: 1,024 tx/Batch
+ Faults: 0 nodes
+ Execution time: 110 s
+
+ + RESULTS:
+ Consensus TPS: 35,700 tx/s
+ Consensus latency: 235 ms
+
+ End-to-end TPS: 41,834 tx/s
+ End-to-end latency: 349 ms
+-----------------------------------------

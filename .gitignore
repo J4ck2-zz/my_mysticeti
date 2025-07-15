@@ -1,0 +1,16 @@
+/.vscode
+/benchmark/db-0
+/benchmark/db-1
+/benchmark/db-2
+/benchmark/db-3
+/benchmark/logs
+/benchmark/.committee.json
+/benchmark/.node-key-0.json
+/benchmark/.node-key-1.json
+/benchmark/.node-key-2.json
+/benchmark/.node-key-3.json
+/benchmark/.node-ts-key-0.json
+/benchmark/.node-ts-key-1.json
+/benchmark/.node-ts-key-2.json
+/benchmark/.node-ts-key-3.json
+/benchmark/.parameters.json
