@@ -307,9 +307,9 @@ func (m *Mempool) generatePayload() {
 			}
 			m.Transimtor.MempoolChannel() <- ownmessage
 		}
-		if m.TxPool.Parameters.Rate > 9000 {
-			time.Sleep(100 * time.Millisecond)
-		}
+		// if m.TxPool.Parameters.Rate > 9000 {
+		// 	time.Sleep(100 * time.Millisecond)
+		// }
 	}
 }
 

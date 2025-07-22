@@ -406,9 +406,9 @@ func NewCommitor(localDAG *LocalDAG, store *store.Store, commitChannel chan<- *B
 		store:         store,
 
 		commitRound: 0,
-		commitNode:  0,
+		commitNode:  1,
 		judinground: 0,
-		judingnode:  0,
+		judingnode:  1,
 
 		connectChannel: mc,
 		//mempool:       mempool,
@@ -664,16 +664,16 @@ func (c *Commitor) IsReceivePattern(round int, slot core.NodeID) pattern {
 
 func (c *Commitor) advancedJudingPointer() {
 	c.judingnode++
-	if c.judingnode >= core.NodeID(c.localDAG.committee.Size()) {
-		c.judingnode = 0
+	if c.judingnode >= 3 {
+		c.judingnode = 1
 		c.judinground++
 	}
 }
 
 func (c *Commitor) advancedCommitPointer() {
 	c.commitNode++
-	if c.commitNode >= core.NodeID(c.localDAG.committee.Size()) {
-		c.commitNode = 0
+	if c.commitNode >= 3 {
+		c.commitNode = 1
 		c.commitRound++
 	}
 }

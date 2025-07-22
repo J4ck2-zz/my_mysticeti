@@ -178,11 +178,23 @@ func (corer *Core) generatorBlock(round int) *Block {
 		}
 		corer.connectChannel <- msg
 		payloads := <-referencechan
+		var nil bool
+		if len(payloads) == 1 {
+			payload, _ := GetPayload(corer.store, payloads[0])
+			if payload.Batch.ID == -1 {
+				nil = true
+			} else {
+				nil = false
+			}
+		} else {
+			nil = false
+		}
 		if round == 0 {
 			block = &Block{
 				Author:    corer.nodeID,
 				Round:     round,
 				PayLoads:  payloads,
+				Nil:       nil,
 				Reference: make(map[crypto.Digest]core.NodeID),
 				TimeStamp: time.Now().Unix(),
 			}
@@ -193,6 +205,7 @@ func (corer *Core) generatorBlock(round int) *Block {
 					Author:    corer.nodeID,
 					Round:     round,
 					PayLoads:  payloads,
+					Nil:       nil,
 					Reference: reference,
 					//Reference: make(map[crypto.Digest]core.NodeID),
 					TimeStamp: time.Now().Unix(),
@@ -242,7 +255,7 @@ func (corer *Core) handlePropose(propose *ProposeMsg) error {
 	if status := corer.checkPayloads(propose.B); status != mempool.OK {
 		return ErrLossPayloads(propose.Round, int(propose.Author))
 	}
-	
+
 	// corer.connectChannel <- &mempool.CleanBlockMsg{
 	// 	Digests: propose.B.PayLoads,
 	// }
@@ -256,6 +269,10 @@ func (corer *Core) handlePropose(propose *ProposeMsg) error {
 }
 
 func (corer *Core) checkPayloads(block *Block) mempool.VerifyStatus {
+	if block.Nil {
+		return mempool.OK
+	}
+
 	msg := &mempool.VerifyBlockMsg{
 		Proposer:           block.Author,
 		Epoch:              int64(block.Round),

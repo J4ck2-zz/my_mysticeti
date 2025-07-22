@@ -1,0 +1,21 @@
+
+-----------------------------------------
+ SUMMARY:
+-----------------------------------------
+ + CONFIG:
+ Protocol: Mysticeti 
+ DDOS attack: False 
+ Committee size: 4 nodes
+ Input rate: 6,000 tx/s
+ Transaction size: 256 B
+ Batch size: 1,024 tx/Batch
+ Faults: 1 nodes
+ Execution time: 110 s
+
+ + RESULTS:
+ Consensus TPS: 27,157 tx/s
+ Consensus latency: 214 ms
+
+ End-to-end TPS: 17,978 tx/s
+ End-to-end latency: 300 ms
+-----------------------------------------

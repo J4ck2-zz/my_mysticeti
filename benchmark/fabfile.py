@@ -14,7 +14,7 @@ def local(ctx):
     bench_params = {
         'nodes': 4,
         'duration': 30,
-        'rate': 15_000,                  # tx send rate
+        'rate': 10_000,                  # tx send rate
         'batch_size': 512,              # the max number of tx that can be hold 
         'log_level': 0b1111,            # 0x1 infolevel 0x2 debuglevel 0x4 warnlevel 0x8 errorlevel
         'protocol_name': "WuKong"
@@ -48,7 +48,7 @@ def local(ctx):
         Print.error(e)
 
 @task
-def create(ctx, nodes=1):
+def create(ctx, nodes=2):
     ''' Create a testbed'''
     try:
         InstanceManager.make().create_instances(nodes)
@@ -113,10 +113,10 @@ def info(ctx):
 def remote(ctx):
     ''' Run benchmarks on AWS '''
     bench_params = {
-        'nodes': [4],
-        'node_instance': 1,                                             # the number of running instance for a node  (max = 4)
-        'duration': 100,
-        'rate': 10_300,                                                  # tx send rate
+        'nodes': [8],
+        'node_instance': 2,                                             # the number of running instance for a node  (max = 4)
+        'duration': 50,
+        'rate': [2000],                                                  # tx send rate
         'batch_size': 1024,                              # the max number of tx that can be hold 
         'log_level': 0b1111,                                            # 0x1 infolevel 0x2 debuglevel 0x4 warnlevel 0x8 errorlevel
         'protocol_name': "Mysticeti",
@@ -130,17 +130,17 @@ def remote(ctx):
             "max_queue_size": 10_000 
 	    },
         "consensus": {
-            "sync_timeout": 1_000,        # node sync time
+            "sync_timeout": 10_000,        # node sync time
             "network_delay": 1_000,        # network delay
             "min_block_delay": 0,       # send block delay
             "ddos": False,              # DDOS attack
             "faults": 0,                # the number of byzantine node
-            "retry_delay": 10_000,        # request block period
+            "retry_delay": 5_000,        # request block period
             "deley_proposal": 100,
             "judge_delay":10,
-            "payload_delay_send":120,
+            "payload_delay_send":200,
             "Max_Payload_Num":15,
-            "Requst_Pload_delay":10_000,
+            "Requst_Pload_delay":1200,
             "maxmempoolqueensize":10_000
         }
     }

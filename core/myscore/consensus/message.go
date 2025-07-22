@@ -29,6 +29,7 @@ type Block struct {
 	Round     int
 	PayLoads  []crypto.Digest
 	Reference map[crypto.Digest]core.NodeID
+	Nil		  bool
 	TimeStamp int64
 }
 
